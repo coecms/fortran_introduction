@@ -13,3 +13,5 @@ Fortran Basics
 
 .. include:: background.rst
 
+.. include:: declarations.rst
+

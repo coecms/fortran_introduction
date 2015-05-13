@@ -1,6 +1,6 @@
 TARGET=slides.html
 MASTER=master.rst
-SRCS=
+SRCS=background.rst declarations.rst
 MATHML=mathml
 
 default : $(TARGET)
