@@ -13,8 +13,9 @@ Fortran Basics
 
 .. include:: background.rst
 
-.. include:: declarations.rst
+.. include:: compiling.rst
 
+.. include:: declarations.rst
 
 .. include:: blocks.rst
 
