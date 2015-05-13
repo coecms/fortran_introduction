@@ -1,0 +1,135 @@
+IMPLICIT
+========
+
+If a variable is not explicitly declared:
+
+* Name starts with I, J, K, L, M, or N: Variable is INTEGER
+* Name starts with anything else: Variable is REAL
+
+This behaviour can be changed with IMPLICIT. 
+
+IMPLICIT NONE
+=============
+
+Forbids the compiler to make any implicit declarations.
+
+If the compiler finds a variable name that hasn't been declared, it will produce a compile time error.
+
+Otherwise it would be a bug or a runtime error, which is harder to find.
+
+Always use 'IMPLICIT NONE'
+
+
+Variable Types
+==============
+
+Basic types:
+
+* LOGICAL
+* INTEGER
+* REAL
+* COMPLEX
+* CHARACTER
+
+
+Arrays
+======
+
+.. code-block:: fortran
+
+   INTEGER, DIMENSION(10) :: my_array
+   INTEGER :: my_second_array(10)
+   INTEGER, DIMENSION(1:10) :: my_third_array
+   INTEGER :: 2D_Array(10, 20)
+   INTEGER, DIMENSION(:), ALLOCATABLE :: &
+                            alloc_array
+ 
+   allocate(alloc_array(10))
+   deallocate(alloc_array)
+
+
+Arrays (cont'd)
+===============
+
+Indices usually start at 1.
+In multi-dimensional arrays, the first index is the fastest changing:
+
+(1, 1) (2, 1) (3, 1) (1, 2) (2, 2) (3, 2)
+
+Parameters
+==========
+
+Also known as constants:
+
+.. code-block:: fortran
+
+   REAL, PARAMETER :: pi = 3.141592
+   REAL :: e
+   PARAMETER(e = 2.71)
+
+
+Variable Kinds
+==============
+
+.. code-block:: fortran
+
+   INTEGER, PARAMETER :: dp = &
+            SELECTED_REAL_KIND(P = 15)
+   REAL(KIND=dp) :: double_precision_var
+   REAL*8 :: dp2_var
+
+   double_precision_var = 1.0_dp
+
+Usually, the KIND is the number of bytes required to represent the variable.
+
+
+CHARACTER
+=========
+
+Fixed length strings.
+
+.. code-block:: fortran
+
+   CHARACTER*10 :: string1
+   CHARACTER(LEN=20) :: string2
+
+   ! String Concatenation:
+   print *, string1 // string2
+
+
+LOGICAL
+=======
+
+Boolean type, .TRUE. or .FALSE.
+
+Note the points on either side.
+
++-------+-----------------------+
+| .NOT. | negates next logical  |
++-------+-----------------------+
+| .AND. | .TRUE. if both left   |
+|       | and right are true    |
++-------+-----------------------+
+| .OR.  | .TRUE. if either left |
+|       | or right are true     |
++-------+-----------------------+
+
+
+Conditionals
+============
+
++------+-----+------------------+
+| F77  | F90 | Meaning          |
++======+=====+==================+
+| .LT. | \<  | less than        |
++------+-----+------------------+
+| .GT. | \>  | greater than     |
++------+-----+------------------+
+| .LE. | <=  | less or equal    |
++------+-----+------------------+
+| .GE. | >=  | greater or equal |
++------+-----+------------------+
+| .EQ. | ==  | equal            |
++------+-----+------------------+
+| .NE. | /=  | not equal        |
++------+-----+------------------+
