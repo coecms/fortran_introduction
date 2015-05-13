@@ -15,3 +15,5 @@ Fortran Basics
 
 .. include:: declarations.rst
 
+
+.. include:: blocks.rst
