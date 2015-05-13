@@ -17,3 +17,5 @@ Fortran Basics
 
 
 .. include:: blocks.rst
+
+.. include:: subroutine.rst
