@@ -108,8 +108,8 @@ back to the calling code.
    END SUBROUTINE my_abs
 
 
-SCOPE
-=====
+Declaration of Procedures
+=========================
 
 Three possible ways to declare a procedure (function or subroutine):
 
