@@ -13,7 +13,7 @@ Very simply put, this is done in three steps:
 Parsing
 =======
 
-The Parser looks at the source code and evaluates exactly what is needed to be done.
+The Parser looks at the source code and evaluates exactly what needs to be done.
 
 It also checks the syntax for errors, and might produce some warnings depending on its settings.
 
@@ -21,7 +21,7 @@ It also checks the syntax for errors, and might produce some warnings depending 
 Compiling
 =========
 
-The compiler parsed data and converts it into machine code.
+The parsed source code is converted into machine code.
 
 Depending on the options, it might make certain changes to improve runtime performance.
 
@@ -29,7 +29,7 @@ Depending on the options, it might make certain changes to improve runtime perfo
 Linking
 =======
 
-The linking step tries to piece the different compiled objects together.
+The linking step tries to piece the different compiled objects together to create an executable.
 
 
 Compiling a simple program
@@ -48,13 +48,15 @@ Such a simple program can be parsed, compiled, and linked in a single step:
 
    $ ifort -warn all -o hello hello.f90
 
+In this example the program which compiles the code is 'ifort', and the name of the executable is set to
+'hello' with the option '-o'.
 It's good practice to always enable the compiler's warning messages by adding `-warn all`. This makes
 sure your code follows the Fortran standards and checks for common programming errors.
 
 Compiling a complex program
 ===========================
 
-If you have a program that contains of several source files, you will have to first
+If you have a program that contains several source files, you will have to first
 compile each one separately, possibly in a certain order, and then link them together at the end:
 
 .. code-block:: bash
