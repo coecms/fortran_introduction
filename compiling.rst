@@ -46,8 +46,10 @@ Such a simple program can be parsed, compiled, and linked in a single step:
 
 .. code-block:: bash
 
-   $ ifort -o hello hello.f90
+   $ ifort -warn all -o hello hello.f90
 
+It's good practice to always enable the compiler's warning messages by adding `-warn all`. This makes
+sure your code follows the Fortran standards and checks for common programming errors.
 
 Compiling a complex program
 ===========================
@@ -57,9 +59,9 @@ compile each one separately, possibly in a certain order, and then link them tog
 
 .. code-block:: bash
 
-   $ ifort -c -o mod_hello.o mod_hello.f90
-   $ ifort -c -o hello.o hello.f90
-   $ ifort -o hello hello.o mod_hello.o
+   $ ifort -warn all -c -o mod_hello.o mod_hello.f90
+   $ ifort -warn all -c -o hello.o hello.f90
+   $ ifort -warn all -o hello hello.o mod_hello.o
 
 The -c means that the compiler should stop after the compiler stage, and not try to link just yet.
 
