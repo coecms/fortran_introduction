@@ -17,7 +17,7 @@ Arrays
 
    INTEGER, DIMENSION(10) :: my_array
    INTEGER :: my_second_array(10)
-   INTEGER, DIMENSION(1:10) :: my_third_array
+   INTEGER, DIMENSION(-4:5) :: my_third_array
    INTEGER :: 2D_Array(10, 20)
    INTEGER, DIMENSION(:), ALLOCATABLE :: &
                             alloc_array
