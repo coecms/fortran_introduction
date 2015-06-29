@@ -90,6 +90,7 @@ WHERE Loop:
    ELSEWHERE
      b = b - 1
    END WHERE
+
 You can not do print statements inside a where loop.
 
 
