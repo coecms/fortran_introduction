@@ -80,6 +80,20 @@ WHILE Loop:
    END DO
 
 
+WHERE Loop:
+===========
+
+.. code-block:: fortran
+
+   WHERE (a < 10)    ! a can be a multi-dimensional array
+     b = b + 1       ! b must have the same dimensions as a
+   ELSEWHERE
+     b = b - 1
+   END WHERE
+
+You can not do print statements inside a where loop.
+
+
 EXIT Loop
 =========
 
