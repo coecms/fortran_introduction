@@ -133,6 +133,7 @@ Independent
 Procedure knows nothing about program and vice versa.
 Hope the arguments are correct, because the compiler won't know.
 
+(Interfaces can help, but they are a lot of overhead.)
 
 CONTAINS
 ========
