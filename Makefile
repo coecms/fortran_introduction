@@ -1,6 +1,6 @@
 TARGET=slides.html
 MASTER=master.rst
-SRCS=background.rst declarations.rst blocks.rst subroutine.rst module.rst compiling.rst
+SRCS=$(wildcard *.rst)
 MATHML=mathml
 
 default : $(TARGET)

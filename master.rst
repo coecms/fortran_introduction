@@ -24,3 +24,6 @@ Fortran Basics
 .. include:: subroutine.rst
 
 .. include:: module.rst
+
+.. include:: depreciated.rst
+
