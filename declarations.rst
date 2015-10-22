@@ -121,28 +121,6 @@ Conditionals
 +------+-----+------------------+
 
 
-IMPLICIT
-========
-
-If a variable is not explicitly declared:
-
-* Name starts with I, J, K, L, M, or N: Variable is INTEGER
-* Name starts with anything else: Variable is REAL
-
-This behaviour can be changed with IMPLICIT. 
-
-IMPLICIT NONE
-=============
-
-Forbids the compiler to make any implicit declarations.
-
-If the compiler finds a variable name that hasn't been declared, it will produce a compile time error.
-
-Otherwise it would be a bug or a runtime error, which is harder to find.
-
-Always use 'IMPLICIT NONE'
-
-
 TYPE
 ====
 
@@ -158,4 +136,4 @@ TYPE
    t % my_int = 1     ! Assign the int variable
    t % my_real = 0.5  ! Assign the real variable
 
-Useful to bundle data of different types together.
+Useful to bundle data together.
