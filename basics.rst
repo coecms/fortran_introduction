@@ -45,3 +45,44 @@ Note: This will not work:
    a = float(3/4)    ! This doesn't work
 
 because 3/4 is still evaluated to 0 before being cast to a floating point number.
+
+
+Floating Point Numbers
+======================
+
+These are all floating point numbers:
+
+.. code-block:: fortran
+
+    1.0
+    1.4e3      ! 1.4 * 10^3
+    .5
+
+Double Precision Numbers:
+
+.. code-block:: fortran
+
+   1.0_8
+   1.4d3
+
+
+
+Floating Point Gotchas
+======================
+
+Floating point numbers do have rounding errors. 
+Computers work in base 2, humans in base 10. 
+That's why computers have rounding errors where humans wouldn't expect.
+
+Don't compare floating point numbers for equality. 
+Better to check for a small relative difference.
+
+.. code-block:: fortran
+   
+    0.1 + 0.2 /= 0.3
+
+If you add or subtract numbers with a large difference in magnitude, expect to loose precision.
+
+.. code-block:: fortran
+
+    2.15e23 + 0.12 - 2.15e23 /= 0.12
