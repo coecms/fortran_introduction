@@ -5,7 +5,7 @@ Fortran Basics
 ==============
 
 :Author: Holger Wolff
-:Date: 27/04/2015
+:Date: 26/10/2015
 
 
 .. |bullet| unicode:: U+02022
@@ -18,6 +18,8 @@ Fortran Basics
 .. include:: declarations.rst
 
 .. include:: basics.rst
+
+.. include:: output.rst
 
 .. include:: blocks.rst
 
