@@ -17,6 +17,8 @@ Fortran Basics
 
 .. include:: declarations.rst
 
+.. include:: basics.rst
+
 .. include:: blocks.rst
 
 .. include:: subroutine.rst
