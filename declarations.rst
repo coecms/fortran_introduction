@@ -83,6 +83,7 @@ CHARACTER
 =========
 
 Fixed length strings.
+Strings are padded with spaces to the right. 
 
 .. code-block:: fortran
 
@@ -92,6 +93,10 @@ Fixed length strings.
    ! String Concatenation:
    print * , string1 // string2
 
+   len(string1) ! returns total length of the string (10)
+   trim(string2) ! returns string w/o trailing spaces
+   len_trim(string2) ! returns the length of the string
+                     ! with trailing spaces removed.
 
 LOGICAL
 =======
