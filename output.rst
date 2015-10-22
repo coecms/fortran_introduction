@@ -44,6 +44,10 @@ There are 3 ways to describe the format:
 FORMAT format
 =============
 
+.. code-block:: fortran
+
+    Example: (A2, I5, F6.2, A, I3.3)
+
 +-------------+-------------------------------------------------------------+
 | Identifier  | Description                                                 |
 +=============+=============================================================+
@@ -56,8 +60,6 @@ FORMAT format
 +-------------+-------------------------------------------------------------+
 | An          | String, n=total length                                      |
 +-------------+-------------------------------------------------------------+
-
-n and w can be omitted.
 
 **Warning:** if n is too small to hold the value, only asterisks are printed.
 
@@ -93,3 +95,33 @@ The syntax is the same, the format is the same, except that it reads data from t
     read(* , '(2I4)') a, b
 
 
+Writing to Variable
+===================
+
+Instead of standard output, you can write into a character variable:
+
+.. code-block:: fortran
+
+    character(len=20) :: text
+
+    write(text, '(A, X, A)') "Hello", "Students"
+    print * , text ! prints "Hello Students"
+
+You can use this to create a format string to use in the real output.
+
+
+File I/O
+========
+
+.. code-block:: fortran
+
+    INTEGER, PARAMETER :: out_unit = 300 ! unique number, preferably >10
+
+    open(unit = out_unit, file = "test.txt", action = "WRITE")
+    write(out_unit, '(A)') "This is written to the file"
+    close(out_unit)
+
+OPEN has a lot of optional parameters, when you need to use them, google the usage.
+
+Standard output is also a UNIT, often 1 or 6, depending on the operating system and compiler.
+Because of this, I usually just declare some parameter with a random, large number, and that's my unit.
