@@ -3,11 +3,19 @@ Variable Types
 
 Basic types:
 
-* LOGICAL
-* INTEGER
-* REAL
-* COMPLEX
-* CHARACTER
++------------+------------------------------------+
+| Type       | Example                            |
++============+====================================+
+| LOGICAL    | True, False                        |
++------------+------------------------------------+
+| INTEGER    | 0, 1, -1, 4711                     |
++------------+------------------------------------+
+| REAL       | 0.0, 0.5, -2.1, 3.141529           |
++------------+------------------------------------+
+| COMPLEX    | (1.0, 1.0), (0.0, 4.5)             |
++------------+------------------------------------+
+| CHARACTER  | "A", "Hello"                       |
++------------+------------------------------------+
 
 
 Arrays
@@ -72,7 +80,7 @@ Fixed length strings.
    CHARACTER(LEN=20) :: string2
 
    ! String Concatenation:
-   print *, string1 // string2
+   print * , string1 // string2
 
 
 LOGICAL
