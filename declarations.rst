@@ -6,7 +6,7 @@ Basic types:
 +------------+------------------------------------+
 | Type       | Example                            |
 +============+====================================+
-| LOGICAL    | True, False                        |
+| LOGICAL    | .TRUE., .FALSE.                    |
 +------------+------------------------------------+
 | INTEGER    | 0, 1, -1, 4711                     |
 +------------+------------------------------------+
@@ -41,6 +41,16 @@ Indices usually start at 1.
 In multi-dimensional arrays, the first index is the fastest changing:
 
 (1, 1) (2, 1) (3, 1) (1, 2) (2, 2) (3, 2)
+
+.. code-block:: fortran
+
+    do l = 1, 10 !-------------------+
+        do m = 1, 10 !------------+  |
+            do n = 1, 10 !-----+  |  |
+                a(n, m, l) = b(n, m, l)
+            end do
+        end do
+    end do
 
 Parameters
 ==========
