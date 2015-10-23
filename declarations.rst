@@ -1,3 +1,14 @@
+Basic Syntax
+============
+
+.. code-block:: fortran
+
+    program <programname>
+        implicit none
+        <variable declarations>
+        <executable statements>
+    end program <programname>
+
 Variable Types
 ==============
 

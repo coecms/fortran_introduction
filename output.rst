@@ -40,6 +40,26 @@ There are 3 ways to describe the format:
 2. A string variable
 3. A label pointing to a **FORMAT** statement
 
+Examples
+========
+
+.. code-block:: fortran
+
+    write(* , '(A5, I3.3, A1)') "Hello", 12, "!"
+    ! Prints "Hello012!"
+
+    b = 1.5
+    fmt="(A, F6.3)"
+    write(* , fmt) "Value of b is ", b
+    ! Prints "Value of b is   1.500"
+
+    c = 1200
+    write(* , 101) "Value of c is ", c
+    101  FORMAT(A, I3)
+    ! Prints "Value of c is ***" because 
+    ! 3 digits is not enough to display 1200
+
+
 
 FORMAT format
 =============
@@ -62,26 +82,6 @@ FORMAT format
 +-------------+-------------------------------------------------------------+
 
 **Warning:** if n is too small to hold the value, only asterisks are printed.
-
-Examples
-========
-
-.. code-block:: fortran
-
-    write(* , '(A5, I3.3, A1)') "Hello", 12, "!"
-    ! Prints "Hello012!"
-
-    b = 1.5
-    fmt="(A, F6.3)"
-    write(* , fmt) "Value of b is ", b
-    ! Prints "Value of b is   1.500"
-
-    c = 1200
-    write(* , 101) "Value of c is ", c
-    101  FORMAT(A, I3)
-    ! Prints "Value of c is ***" because 
-    ! 3 digits is not enough to display 1200
-
 
 READ
 ====
