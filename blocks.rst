@@ -78,7 +78,7 @@ Named Loops
 
 .. code-block:: fortran
 
-   my_loop :: DO i = 1, 10
+   my_loop : DO i = 1, 10
      PRINT * , i
    END DO my_loop
 
