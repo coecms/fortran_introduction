@@ -29,3 +29,4 @@ Fortran Basics
 
 .. include:: depreciated.rst
 
+.. include:: closing.rst
