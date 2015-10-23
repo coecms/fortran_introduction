@@ -9,7 +9,9 @@ statement is executed if and only if cond is true, example:
 
 .. code-block:: fortran
 
-   IF (i < 5) PRINT *, "less than five"
+   IF (i < 5) PRINT * , "less than five"
+
+Rarely used.
 
 
 IF Block
@@ -22,6 +24,8 @@ IF Block
      statement2
    END IF
 
+Lines between THEN and ENDIF are only executed if cond is .TRUE.
+
 
 ELSE Block
 ==========
@@ -33,6 +37,8 @@ ELSE Block
    ELSE
      statement2
    END IF
+
+if cond is .TRUE., then execute statement1, else statement2
 
 
 ELSEIF Block
@@ -48,14 +54,22 @@ ELSEIF Block
      statement3
    END IF
 
+Note that cond2 is not even checked if cond1 is .TRUE.
+
 
 LOOPS
 =====
 
 .. code-block:: fortran
 
+   ! Old style:
+   DO 1000 i = 1, 10
+     PRINT * , i
+   1000 CONTINUE
+
+   ! New style
    DO i = 1, 10
-     PRINT *, i
+     PRINT * , i
    END DO
 
 
@@ -65,9 +79,12 @@ Named Loops
 .. code-block:: fortran
 
    my_loop :: DO i = 1, 10
-     PRINT *, i
+     PRINT * , i
    END DO my_loop
 
+If you name a loop, you have to repeat the name for the END DO line.
+
+In long and nested loops, this helps to keep track of which loop you end.
 
 WHILE Loop:
 ===========
@@ -76,11 +93,12 @@ WHILE Loop:
 
    DO WHILE (i < 10)
      i = i + 1
-     PRINT *, i
+     PRINT * , i
    END DO
 
+Checks every iteration whether the condition is still valid.
 
-WHERE Loop:
+WHERE Block
 ===========
 
 .. code-block:: fortran
@@ -91,7 +109,7 @@ WHERE Loop:
      b = b - 1
    END WHERE
 
-You can not do print statements inside a where loop.
+You can not do print statements inside a WHERE block.
 
 
 EXIT Loop
@@ -102,7 +120,7 @@ EXIT Loop
    DO
      i = i + 1
      IF (i >= 10) EXIT
-     PRINT *, i
+     PRINT * , i
    END DO
 
 EXIT ends execution of the loop, jumps to first statement after END DO.
@@ -116,7 +134,7 @@ CYCLE Loop
 
    DO i = 1, 100
      IF (mod(i, 5) == 0) CYCLE
-     PRINT *, i
+     PRINT * , i
    END DO
 
 CYCLE stops the execution of *this* iteration and begins with the next.
