@@ -74,17 +74,204 @@ call greet(my_name)
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{}
+  \frametitle{Intent}
+
+  A procedure can have any number of arguments, separated by commata.
+
+  It is good programming practise to give all arguments an \texttt{INTENT}:
 
   \begin{lstlisting}
+subroutine my_routine (a, b, c)
+    implicit none
+    integer, intent(in) :: a
+    integer, intent(out) :: b
+    integer, intent(inout) :: c
+
+    b = a + c
+    c = 2 * a
+end subroutine my_routine
   \end{lstlisting}
 
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{}
+  \frametitle{Intent (cont'd)}
+
+  \begin{table}
+  \begin{tabular}{| c | l |}
+    \hline
+    \textbf{INTENT} & \textbf{Explanation} \cr
+    \hline
+    \texttt{IN}     & Procedure will not change the value \cr
+                    & of this variable \cr
+    \texttt{OUT}    & Procedure will set this to a new value \cr
+    \texttt{INOUT}  & Procedure might read this value and \cr
+                    & might set it to a new one \cr
+    \hline
+  \end{tabular}
+  \end{table}
+
+  This helps the compiler to spot bugs and to improve performance.
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Functions}
+
+  Functions are similar to subroutines, except that they return a value
+  themselves.
 
   \begin{lstlisting}
+function my_abs(n)
+    implicit none
+    integer, intent(in) :: n
+    integer :: my_abs   ! Declare the type of the function
+    if (n >= 0) then
+        my_abs = n      ! Use name of function as variable
+    else
+        my_abs = -n
+    end if
+end function my_abs
   \end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Calling a function}
+
+  Since functions return a value, when called, that value
+  has to be placed somewhere.
+
+  \begin{lstlisting}[numbers=none]
+b = my_abs(a)
+print *, "The absolute value of -10 is ", my_abs(-10)
+  \end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{RETURN}
+
+  Sometimes, you want to return from a procedure early.
+
+  \begin{lstlisting}
+subroutine report_error(error_code)
+    ! Prints the error code to screen
+    ! only if the error code is not 0
+    implicit none
+    integer, intent(in) :: error_code
+    if (error_code == 0) return
+    print *, "Encountered error: ", error_code
+    print *, "Please check program"
+end subroutine report_error
+  \end{lstlisting}
+
+  In the case that the error code is 0, line 6 will return early and not print
+  the error messages.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Independend Procedures}
+
+  Procedures can be placed outside of the program code, in a different file altogether.
+
+  \begin{lstlisting}
+subroutine hello()
+    implicit none
+    print *, "Hello World!"
+end subroutine hello
+
+program main
+    implicit none
+    call hello()
+end program main
+  \end{lstlisting}
+
+The compiler doesn't know anything about the subroutine when it's compiling the main program, it can't check whether the arguments are correct.
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{CONTAINS}
+
+Programs can contain subroutines.
+In this case, the subroutine has full access to the programs variables at the time
+it is called.
+
+  \begin{lstlisting}
+program main
+    implicit none
+    call greet()
+contains
+    subroutine greet()
+        implicit none
+        print *, "Hello World"
+    end subroutine greet
+end program main
+  \end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{MODULE}
+
+  Procedures can also be placed in modules. 
+  Modules are very similar to a program, in that they (can) have 
+  variables, types, and can contain procedures.
+
+  \begin{lstlisting}
+module <module_name>
+    implicit none
+    <declaration of variables>
+contains
+    <procedures>
+end module <module_name>
+  \end{lstlisting}
+
+  What they don't have is executable code outside of the contained
+  procedures.
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{MODULE Example}
+
+  Here's an example for a module for a greeter.
+
+  \begin{lstlisting}
+module greet_mod
+    implicit none
+    character(len=20) :: greeting = "Hello"
+contains
+    subroutine greet(cname)
+        implicit none
+        character(len=*), intent(in) :: cname
+        print *, trim(greeting) // " " // trim(cname)
+    end subroutine greet
+end module greet_mod
+  \end{lstlisting}
+
+  Note that the subroutine has access to the module variable \texttt{greeting}
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{USE of Modules}
+
+  To use a module, either in a program or another procedure, 
+  the \texttt{USE} keyword is used \textbf{before} the \texttt{IMPLICIT NONE}.
+
+  \begin{lstlisting}
+program hello_world
+    use greet_mod
+    implicit none
+
+    greeting="G'Day"
+    call greet("World")
+end program hello_world
+  \end{lstlisting}
+
+  Note that the program doesn't have to declare the \texttt{greeting}, 
+  and can still change its value.
 
 \end{frame}
