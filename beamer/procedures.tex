@@ -1,5 +1,87 @@
 
 \begin{frame}[fragile]
+  \frametitle{Procedures}
+
+  Procedures are like little programs that the
+  main program (or other procedures) can call on
+  to preform small tasks.
+
+  Splitting one huge project into many small procedures
+  helps with code readability and reduces code duplication.
+
+  Fortran knows two types of procedures
+
+  \begin{enumerate}
+    \item Subroutines
+    \item Functions
+  \end{enumerate}
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Subroutines}
+
+  Subroutines look very similar to a program:
+
+  \begin{lstlisting}
+subroutine <routine name> (<arguments>)
+    implicit none
+    <declarations>
+    <executable code>
+end subroutine <routine name>
+  \end{lstlisting}
+
+  New are the \texttt{arguments}. 
+  This is a list of variables that the caller has to pass to the
+  subroutine in order for the subroutine to work correctly.
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Subroutine Example}
+
+  \begin{lstlisting}
+subroutine greet (cname)
+    implicit none
+    character(len=*) :: cname
+    print *, "Hello " // trim(cname)
+end subroutine greet
+  \end{lstlisting}
+
+  Here, the name of the subroutine is \texttt{greet}, and it takes one argument:
+  \texttt{cname}, which is declared in line 3 as being a character with unknown length.
+
+  This is one of the few times where Fortran doesn't need to know the length of the
+  String. 
+  \texttt{(len=*)} means that the routine should just take the string length as is.
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Calling a Subroutine}
+
+  \begin{lstlisting}[numbers=none]
+call greet("World")
+
+call greet(cname = "Tony")
+
+my_name = "Holger"
+call greet(my_name)
+  \end{lstlisting}
+
+  These are three ways how to call the subroutine. 
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{}
+
+  \begin{lstlisting}
+  \end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]
   \frametitle{}
 
   \begin{lstlisting}
