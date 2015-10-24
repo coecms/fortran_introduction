@@ -1,0 +1,40 @@
+\begin{frame}
+  \frametitle{History of Fortran}
+  \begin{itemize}
+    \item \textbf{For}mula \textbf{Tran}slation
+    \item Around since 1952
+    \item Procedural Programming Paradigm
+    \item Versions usually denoted by year of publication, eg. 66, 77, 90, 95, 2003
+    \item This course deals with versions 77 to 95.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Example Fortran77 Code}
+  \begin{lstlisting}[escapechar=@]
+       PROGRAM HELLO
+       IMPLICIT NONE
+       INTEGER i
+@\color{green}@C      This is a comment
+       DO 100 i = 1, 10
+       PRINT *, "I am in iteration ", i,
+      & " of the loop."
+ 100   CONTINUE
+       END PROGRAM
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Example Fortran90 Code}
+  \begin{lstlisting}
+PROGRAM HELLO
+    IMPLICIT NONE
+    INTEGER i    ! This is a comment
+    DO 100 i = 1, 10
+        PRINT *, "I am in iteration ", i, & 
+                 " of the loop."
+    END DO
+END PROGRAM HELLO
+  \end{lstlisting}
+\end{frame}
+
