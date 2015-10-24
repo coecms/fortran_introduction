@@ -1,3 +1,15 @@
+\begin{frame}
+  \frametitle{Variables}
+  In this section, I will introduce
+  \begin{itemize}
+    \item The basic program structure
+    \item The different variable types
+    \item Kinds
+    \item Custom Types
+    \item Arrays
+  \end{itemize}
+\end{frame}
+
 \begin{frame}[fragile]
   \frametitle{Basic Program Structure}
   \begin{lstlisting}[deletekeywords=name]
@@ -24,48 +36,6 @@ end program <name>
     \hline
     \end{tabular}
   \end{table}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Arrays}
-  Several values of the same type can be taken together in Arrays.
-
-  \begin{lstlisting}
-INTEGER :: a(10)
-INTEGER, DIMENSION(10) :: b
-INTEGER, DIMENSION(1:10) :: c
-  \end{lstlisting}
-
-  All three lines above do the same thing: They declare an array of 10 integers, with indices running from 1 to 10.
-
-  To access certain values inside the array, you write the index in parentheses after the array name:
-
-  \begin{lstlisting}[numbers=none]
-print *, "The 5th element of a is ", a(5)
-  \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Arrays (continued)}
-  \begin{lstlisting}
-INTEGER, DIMENSION(-5:5) :: a
-INTEGER, DIMENSION(10, 20) :: b
-INTEGER, DIMENSION(:), ALLOCATABLE :: c
-  \end{lstlisting}
-
-  Line 1 shows how to create an array with indices that run from -5 to 5.
-
-  Line 2 creates a two-dimensional array with 10 by 20 elements.
-
-  Line 3 creates an allocatable array. In this case, it has one dimension, 
-  but at compile time we don't yet know how big it needs to be.
-  Before \texttt{c} can be used, it first has to be allocated, like so:
-
-  \begin{lstlisting}[numbers=none]
-  allocate(c(100))
-  deallocate(c)
-  \end{lstlisting}
-
 \end{frame}
 
 \begin{frame}[fragile]
@@ -139,6 +109,48 @@ TYPE(my_type) :: t
 
 t % my_int = 5
 t % my_real = 1.2
+  \end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Arrays}
+  Several values of the same type can be taken together in Arrays.
+
+  \begin{lstlisting}
+INTEGER :: a(10)
+INTEGER, DIMENSION(10) :: b
+INTEGER, DIMENSION(1:10) :: c
+  \end{lstlisting}
+
+  All three lines above do the same thing: They declare an array of 10 integers, with indices running from 1 to 10.
+
+  To access certain values inside the array, you write the index in parentheses after the array name:
+
+  \begin{lstlisting}[numbers=none]
+print *, "The 5th element of a is ", a(5)
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Arrays (continued)}
+  \begin{lstlisting}
+INTEGER, DIMENSION(-5:5) :: a
+INTEGER, DIMENSION(10, 20) :: b
+INTEGER, DIMENSION(:), ALLOCATABLE :: c
+  \end{lstlisting}
+
+  Line 1 shows how to create an array with indices that run from -5 to 5.
+
+  Line 2 creates a two-dimensional array with 10 by 20 elements.
+
+  Line 3 creates an allocatable array. In this case, it has one dimension, 
+  but at compile time we don't yet know how big it needs to be.
+  Before \texttt{c} can be used, it first has to be allocated, like so:
+
+  \begin{lstlisting}[numbers=none]
+  allocate(c(100))
+  deallocate(c)
   \end{lstlisting}
 
 \end{frame}
