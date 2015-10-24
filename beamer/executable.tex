@@ -1,0 +1,77 @@
+\begin{frame}
+  \frametitle{Writing Source Code}
+  Source Code is written with a Text Editor.
+
+  Not to be confused with Word Processors. 
+  Basically: If you can easily change the Font, you can't use it to write code.
+
+  Examples for good text editors:
+
+  \begin{itemize}
+    \item Windows: Notepad++
+    \item MacOS: TextWrangler
+    \item Linux GUI: gedit
+    \item Linux console: vim, emacs, nano
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Compiling Simple}
+  Let's consider this very simple "Hello World" program:
+  \begin{lstlisting}
+program hello
+    implicit none
+    print *, "Hello World"
+end program hello
+  \end{lstlisting}
+  Such a program can be compiled in a single step:
+  \begin{lstlisting}[language=bash,numbers=none]
+$ gfortran -o hello hello.f90
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Compiling Multiple Files}
+  If your code spans several files, you have to independently compile each into
+  object files. Often you need to do that in a certain order.
+  Then you link the object files together into the executable.
+
+  \begin{lstlisting}[language=bash,numbers=none]
+$ gfortran -c -o mod_hello.o mod_hello.f90
+$ gfortran -c -o hello.o hello.f90
+$ gfortran -o hello hello.o mod_hello.o
+  \end{lstlisting}
+
+  Note the \texttt{-c} flag in the first two lines.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Compiler Warnings}
+  Sometimes your code is syntactically correct, but doesn't do what you think it does.
+  There are some warning signs that the compiler can pick up, such as 
+  Variables that are declared but never used, or blocks of code that are never reached.
+
+  It is good programming practise to always enable all warnings, and then eliminate the causes for these warnings.
+
+  \begin{itemize}
+    \item \textbf{Intel Fortran:} use option \texttt{-warn all}
+    \item \textbf{GNU Fortran:} use option \texttt{-Wall}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Compiler Debugging Settings}
+  Some compiler options reduce performance, but provide useful feedback during
+  programming and debugging.
+
+  \begin{table}
+  \begin{tabular}{lcc}
+    & \textbf{Intel} & \textbf{GNU} \cr
+    Traceback & \texttt{-traceback} & \texttt{-fbacktrace} \cr
+    Checking & \texttt{-check all} & \texttt{-fbounds-check}
+  \end{tabular}
+  \end{table}
+  Once you're done debugging, compile it without these options.
+\end{frame}
+
+
