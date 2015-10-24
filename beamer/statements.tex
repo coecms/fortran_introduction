@@ -1,0 +1,272 @@
+\begin{frame}[fragile]
+  \frametitle{Basic Assignment}
+
+  \begin{lstlisting}
+  a = 3 + 4 * 2
+  b = (3 + 4) * 2
+  c = sqrt(2.0)
+  i = i + 1
+  \end{lstlisting}
+
+  Single equals sign is assignment operator. 
+
+  Right side is evaluated, assigned to variable on left.
+
+  Line 4 is a common line that increments the value of \texttt{i} by one.
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Assignment Gotcha}
+
+  \begin{lstlisting}
+  REAL :: a
+
+  a = 3 / 4
+  print *, a  ! prints 0.0
+  \end{lstlisting}
+
+  3/4 is evaluated using integer division, ignoring the remainder.
+  Then 0 is assigned to a, changed into a \texttt{REAL} type.
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Solution}
+
+  Enforce the division to be a floating point division by turning
+  at least one of numerator and denominator into \texttt{REAL}:
+
+  \begin{lstlisting}
+  a = 3.0 / 4
+  a = float(3) / 4
+  a = 3 / (4 * 1.0)
+  \end{lstlisting}
+
+  What doesn't work is converting the result of the division to \texttt{REAL}:
+
+  \begin{lstlisting}[numbers=none]
+  a = float(3 / 4)   ! Doesn't work
+  \end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Loops}
+
+  Loops repeat the same code several times, often have an iterator that changes
+  its value every iteration.
+
+  \begin{lstlisting}
+  ! Old Style
+  do 100 i = 1, 10
+    print *, i
+  100 continue
+
+  ! New Style
+  do i = 1, 10
+    print *, i
+  end do
+  \end{lstlisting}
+  These loops print the numbers from 1 to 10.
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Stride}
+
+  Iterators don't have to increment by one every iteration.
+
+  \begin{lstlisting}
+  do i = 5, 20, 3   
+  do i = 20, 10, -1
+  \end{lstlisting}
+  The third number is the stride, the amount by which the iterator
+  changes in every iteration of the loop.
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{DO WHILE}
+
+  You can also repeat a loop while a condition is still valid:
+
+  \begin{lstlisting}
+  do while(j > 10)
+    j = j - 2
+  end do
+  \end{lstlisting}
+
+  Ensure that the loop will terminate eventually, or your program will hang.
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{EXIT}
+
+  The \texttt{exit} statement interrupts the loop and moves straight to the first
+  statement after the loop:
+
+  \begin{lstlisting}
+  do i = 1, 10
+    if (i > 5) exit
+  end do
+  \end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{CYCLE}
+
+  The \texttt{cycle} statement interrupts the current iteration of the loop
+  and immediately starts with the next one.
+
+  \begin{lstlisting}
+  do i = 1, 100
+    if (mod(i, 3) == 0) cycle ! Don't print multiples of 3
+    print *, i
+  end do
+  \end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Named Loops}
+
+  You can name loops.
+  In this case, the \texttt{end do} statement has to repeat the name of the loop.
+
+  \begin{lstlisting}
+  print_loop : do i = 1, 10
+    print *, i
+  end do print_loop
+  \end{lstlisting}
+
+  This helps with readability when you have long and/or nested loops.
+
+  This also helps you to clear which loop to \texttt{EXIT} or \texttt{CYCLE}.
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Conditional}
+
+  \begin{lstlisting}[numbers=none]
+  if (<condition>) <statement>
+  \end{lstlisting}
+  The \texttt{if} statement is used for conditional execution.
+  Example:
+  \begin{lstlisting}[numbers=none]
+  if (i < 5) print *, "i is less than 5"
+  \end{lstlisting}
+
+  \texttt{<condition>} must evaluate to \texttt{.TRUE.} or \texttt{.FALSE.}, and only in the former case is the \texttt{<statement>} executed.
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{IF Block}
+
+  \begin{lstlisting}[numbers=none]
+  if (<condition>) then
+    <statement 1>
+    <statement 2>
+  end if
+  \end{lstlisting}
+
+  When the execution of several statements must be dependend on
+  a condition, the keyword \texttt{THEN} is added after the condition.
+
+  In that case, all statements until the \texttt{END IF} statement are
+  executed.
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{IF ELSE Block}
+
+  \begin{lstlisting}[numbers=none]
+  if (<condition>) then
+    <true statement>
+  else
+    <false statement>
+  end if
+  \end{lstlisting}
+
+  An \texttt{IF} block can be extended with an \texttt{ELSE} block that
+  gets executed if and only if the initial condition evaluated to \texttt{.FALSE.}.
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Conditionals (cont'd)}
+
+  At the end, \texttt{<condition>} has to be of type \texttt{LOGICAL}.
+
+  But they can be combined (\texttt{A} and \texttt{B} are of type \texttt{LOGICAL}):
+
+  \begin{table}
+  \begin{tabular}{| c | l |}
+    \hline
+    \textbf{Code} & \textbf{Explanation} \cr
+    \hline
+    \texttt{.not. A} & inverts A \cr
+    \texttt{A .or. B} & \texttt{.TRUE.} if at least one of \texttt{A} or \texttt{B} is. \cr
+    \texttt{A .and. B} & \texttt{.TRUE.} if both \texttt{A} and \texttt{B} are. \cr
+    \hline
+  \end{tabular}
+  \end{table}
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Conditionals (cont'd \#2)}
+
+  Variables of all types can be compared to get \texttt{LOGICAL}:
+  \begin{table}
+  \begin{tabular}{| c | c | l |}
+    \hline
+    \textbf{F77 Code} & \textbf{F90 Code} & \textbf{\texttt{.TRUE.} if} \cr
+    \hline
+    \texttt{A .lt. B} & \texttt{A < B} & \texttt{A} is less than \texttt{B} \cr
+    \texttt{A .gt. B} & \texttt{A > B} & \texttt{A} is greater than \texttt{B} \cr
+    \texttt{A .le. B} & \texttt{A <= B} & \texttt{A} is less than or equal to \texttt{B} \cr
+    \texttt{A .eq. B} & \texttt{A == B} & \texttt{A} is equal to \texttt{B} \cr
+    \texttt{A .neq. B} & \texttt{A <> B} & \texttt{A} is not equal to \texttt{B} \cr
+    \texttt{A .ge. B} & \texttt{A >= B} & \texttt{A} is greater than or equal to \texttt{B} \cr
+    \hline
+  \end{tabular}
+  \end{table}
+
+  \begin{lstlisting}
+  if ( (i == 5) .and. (.not. (mod(j, 5) == 0))) then
+    print *, "i is 5 and j is not a multiple of 5"
+  end if
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Floating Point Warning}
+  
+  Floating point numbers have limited precision. 
+  This leads to rounding errors.
+  In the familiar decimal system, we see this for example here:
+
+  1 = 1/3 + 1/3 + 1.3 = 0.33333 + 0.33333 + 0.33333 = 0.99999
+
+  Computers use binary, so their rounding errors might come as a surprise:
+
+  \begin{lstlisting}[numbers=none]
+  if (.not. ((0.1 + 0.2) == 0.3)) print *, "Rounding Error!"
+  \end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{}
+
+  \begin{lstlisting}
+  \end{lstlisting}
+
+\end{frame}
+
