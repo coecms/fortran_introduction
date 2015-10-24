@@ -199,6 +199,29 @@
 \end{frame}
 
 \begin{frame}[fragile]
+  \frametitle{ELSEIF Block}
+
+  \begin{lstlisting}[numbers=none]
+  if (<condition 1>) then
+    <statement 1>
+  elseif (<condition 2>) then
+    <statement 2>
+  else
+    <statement 3>
+  end if
+  \end{lstlisting}
+
+  If the initial condition is \texttt{.FALSE.} we can check for other conditions
+  using the \texttt{ELSEIF} clause. 
+
+  Note here that when \texttt{condition 1} is \texttt{.TRUE.}, only 
+  \texttt{statement 1} is executed and \texttt{condition 2} never even checked.
+
+  There is no limit on the number of \texttt{ELSEIF} clauses.
+
+\end{frame}
+
+\begin{frame}[fragile]
   \frametitle{Conditionals (cont'd)}
 
   At the end, \texttt{<condition>} has to be of type \texttt{LOGICAL}.
