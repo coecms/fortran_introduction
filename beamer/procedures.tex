@@ -188,14 +188,16 @@ subroutine hello()
     implicit none
     print *, "Hello World!"
 end subroutine hello
+  \end{lstlisting}
 
+  \begin{lstlisting}
 program main
     implicit none
     call hello()
 end program main
   \end{lstlisting}
 
-The compiler doesn't know anything about the subroutine when it's compiling the main program, it can't check whether the arguments are correct.
+This is inferior to other methods.
 
 \end{frame}
 
