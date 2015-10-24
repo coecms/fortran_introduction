@@ -1,0 +1,9 @@
+*.pdf
+*.aux
+*.loc
+master.log
+*.nav
+*.out
+*.snm
+*.toc
+*.vrb
