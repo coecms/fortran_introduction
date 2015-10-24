@@ -1,32 +1,182 @@
+\begin{frame}[fragile]
+  \frametitle{Output and Input}
+
+  The next Section is about Output and Input of Data.
+
+\end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{}
+  \frametitle{PRINT}
 
+  The first way to output data has been featuring prominently
+  on most slides:
+
+  \begin{lstlisting}[numbers=none]
+print *, <data>
+  \end{lstlisting}
+
+  This statement dumps the data to the standard output.
+  The formatting isn't nice, but it's really easy.
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{WRITE}
+
+  To get more control over the output, the \texttt{WRITE}
+  statement is used.
+
+  \begin{lstlisting}[numbers=none]
+write(*, *) <data>
+  \end{lstlisting}
+
+  This line is actually equivalent to the \texttt{print} statement.
+
+  But note the two asterisks:
+
+  The first one declares the destination of the write statement (* is standard output),
+  the second one the format (* is standard format).
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Format}
+
+  The format can be given in three ways:
+  
+  Directly as a string:
   \begin{lstlisting}
+write(*, '(A6, I4)') "Year: ", 2015
+  \end{lstlisting}
+
+  Placed in a string variable:
+  \begin{lstlisting}
+fmt = "(A6, I4)"
+write(*, fmt) "Year: ", 2015
+  \end{lstlisting}
+
+  Or by giving the label of a \texttt{FORMAT} statement:
+  \begin{lstlisting}
+write(*, 1001) "Year: ", 2015
+1001 format(A6, I4)
   \end{lstlisting}
 
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{}
+  \frametitle{Format Examples}
+
+  \begin{table}
+  \begin{tabular}{| l | l |}
+    \hline
+    \textbf{ID} & \textbf{Explanation} \cr
+    \hline
+    \texttt{In.w} & Integer, n is total length, w is min length \cr
+                  & padded with 0 \cr
+    \hline
+    \texttt{Fn.w} & Float, n is total length, w is number of \cr
+                  & digits after the comma \cr
+    \hline
+    \texttt{En.w} & Float in notation 2.41E4, n is total length, \cr
+                  & w is number of digits after the comma \cr
+    \hline
+    \texttt{An}   & String, n is length \cr
+    \hline
+  \end{tabular}
+  \end{table}
+
+  There are lots more, google "Fortran Format" for complete list.
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{READ}
+
+  The converse of the \texttt{WRITE} statement is the \texttt{READ} statement.
+  It follows the same rules and uses the same formatting syntax.
+
+  \begin{lstlisting}[numbers=none]
+read(*, '(I4, F8.2)') n, r
+  \end{lstlisting}
+
+  This command reads from standard input (keyboard) first a 4 digit integer, then a floating point number in the format xxxxx.xx
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Writing to CHARACTER}
+
+  The first argument of the \texttt{WRITE} and \texttt{READ} statements is the 
+  destination/source.
+  The asterisk refers to standard input/output.
+  But we can also direct it to something else.
+
+  For example a character variable:
 
   \begin{lstlisting}
+character(len=10) :: t
+write(t, '(A5, I5.5)') "file_", 4
+  \end{lstlisting}
+
+  The above snippet would store the text "file\_00004" in the variable \texttt{t}.
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{OPEN}
+
+  To write to (or read from) a file, the file needs to be opened and closed.
+
+  \begin{lstlisting}
+integer, parameter :: my_unit = 300 ! Some number > 10
+integer :: io_err
+
+open(unit=my_unit, file="file.txt", action="WRITE", status="REPLACE", &
+     iostat=io_err)
+write(my_unit, '(A)') "This text is written to the file"
+close(my_unit)
+  \end{lstlisting}
+
+  There are a lot more optional arguments to \texttt{OPEN}, google "Fortran OPEN" for a complete list.
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{NAMELIST}
+
+  A \texttt{NAMELIST} is a collection of variables that can be read from and
+  written to a file very easily.
+
+  First, the variables have to be declared and declared to be part of a namelist:
+
+  \begin{lstlisting}
+integer :: a
+real :: r
+real, dimension(10) :: t
+
+namelist /NLIST/ a, r, t
+
+open(unit=my_unit, file='file.txt', action='READ')
+read(my_unit, nml=NLIST)
+close(my_unit)
   \end{lstlisting}
 
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{}
+  \frametitle{NAMELIST (cont'd)}
+
+  In order to be read by the code on the previous page, the file "file.txt" must
+  obey a certain format:
 
   \begin{lstlisting}
+&NLIST
+  a = 6,
+  r = 4.51,
+  t = 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0
+/
   \end{lstlisting}
 
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{}
-
-  \begin{lstlisting}
-  \end{lstlisting}
+  A namelist like this can also be written by a \texttt{WRITE} statement.
 
 \end{frame}
