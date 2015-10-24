@@ -1,0 +1,117 @@
+\begin{frame}[fragile]
+  \frametitle{Basic Program Structure}
+  \begin{lstlisting}[deletekeywords=name]
+program <name>
+  implicit none
+  <variable declaration>
+  <executable statements>
+end program <name>
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Variable Types}
+  \begin{table}
+    \begin{tabular}{| l | l | l |}
+    \hline
+    \textbf{Fortran} & \textbf{Other} & \textbf{Examples} \cr
+    \hline
+    \texttt{LOGICAL} & bool(ean) & \texttt{.TRUE.} or \texttt{.FALSE.} \cr
+    \texttt{INTEGER} & int & \texttt{0}, \texttt{10}, \texttt{-20} \cr
+    \texttt{REAL} & float & \texttt{0.0}, \texttt{1.}, \texttt{.5}, \texttt{1.4e3} \cr
+    \texttt{COMPLEX} &  & \texttt{(0.0, 1.0)} \cr
+    \texttt{CHARACTER} & char, String & \texttt{"A"}, \texttt{"Hello World"} \cr
+    \hline
+    \end{tabular}
+  \end{table}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Arrays}
+  Several values of the same type can be taken together in Arrays.
+
+  \begin{lstlisting}
+INTEGER :: a(10)
+INTEGER, DIMENSION(10) :: b
+INTEGER, DIMENSION(1:10) :: c
+  \end{lstlisting}
+
+  All three lines above do the same thing: They declare an array of 10 integers, with indices running from 1 to 10.
+
+  To access certain values inside the array, you write the index in parentheses after the array name:
+
+  \begin{lstlisting}[numbers=none]
+print *, "The 5th element of a is ", a(5)
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Arrays (continued)}
+  \begin{lstlisting}
+INTEGER, DIMENSION(-5:5) :: a
+INTEGER, DIMENSION(10, 20) :: b
+INTEGER, DIMENSION(:), ALLOCATABLE :: c
+  \end{lstlisting}
+
+  Line 1 shows how to create an array with indices that run from -5 to 5.
+
+  Line 2 creates a two-dimensional array with 10 by 20 elements.
+
+  Line 3 creates an allocatable array. In this case, it has one dimension, 
+  but at compile time we don't yet know how big it needs to be.
+  Before \texttt{c} can be used, it first has to be allocated, like so:
+
+  \begin{lstlisting}[numbers=none]
+  allocate(c(100))
+  deallocate(c)
+  \end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Parameters}
+  Parameters, called constants in many other languages, are like variables, except
+  their value cannot ever change.
+
+  \begin{lstlisting}
+REAL, PARAMETER :: pi = 3.141592
+REAL :: e
+PARAMETER(e = 2.71)
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{KIND}
+  Variable KINDS are flavours of variables that change the precision and range of 
+  values that can be stored in them.
+
+  Usually, the KIND is the number of bytes required to store the data, though not all numbers are allowed.
+
+  \begin{lstlisting}
+REAL*8 :: var1
+REAL(KIND=8) :: var2
+
+INTEGER, PARAMETER :: dp == selected_real_kind(P = 15)
+REAL(KIND=dp) :: var3
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Character}
+
+  Fortran can only understand fixed length Strings. 
+  
+  \begin{lstlisting}
+CHARACTER*20 :: A
+CHARACTER(LEN=10) :: B
+
+A = "Hello World"   ! Actually stores "Hello World         "
+B = A               ! Actually stores "Hello Worl"
+  \end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{}
+
+\end{frame}
