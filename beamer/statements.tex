@@ -160,6 +160,27 @@
 \end{frame}
 
 \begin{frame}[fragile]
+  \frametitle{Nested Loops and Multi-Dimensional Arrays}
+
+  Often nested loops are used to loop over all the indices of multi-dimensional arrays.
+
+  \begin{lstlisting}
+do k = 1, 100
+    do j = 1, 100
+        do i = 1, 100
+            a(i, j, k) = 3.0 * b(i, j, k)
+        end do
+    end do
+end do
+  \end{lstlisting}
+
+  For performance reasons, it is always best to have the \textbf{innermost} loop over the \textbf{first} index, and so on out.
+
+  This has to do with the way Fortran stores multi-dimensional arrays.
+\end{frame}
+
+
+\begin{frame}[fragile]
   \frametitle{Conditional}
 
   \begin{lstlisting}[numbers=none]
