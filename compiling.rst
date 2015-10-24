@@ -8,7 +8,7 @@ If you can easily change the font, it's a word processor, not a text editor.
 
 Common ones are notebook++ (Windows), vim, emacs, nano.
 
-There are also IDEs (Integrated Development Environments) like eclipse, but they are more involved.
+There are also IDEs (Integrated Development Environments) like Eclipse, but they are more involved.
 
 Compiling Steps
 ===============
