@@ -11,11 +11,11 @@
 
 \begin{frame}[fragile]
   \frametitle{Example Fortran77 Code}
-  \begin{lstlisting}[escapechar=@]
+  \begin{lstlisting}
        PROGRAM HELLO
        IMPLICIT NONE
        INTEGER i
-@\color{green}@C      This is a comment
+C      This is a comment
        DO 100 i = 1, 10
        PRINT *, "I am in iteration ", i,
       & " of the loop."
@@ -24,17 +24,79 @@
   \end{lstlisting}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Fortran 77}
+  Fixed Form:
+  \begin{itemize}
+       \item The position in the line of a character has meaning.
+       \item Anything in first position (other than digit): 
+             Line is Comment.
+       \item A number in postions 1-5: 
+             Label that can be referenced somewhere else in the code
+       \item Anything in position 6:
+             Continuation line, this code continues from last line
+       \item Code between position 7 and 72 (inclusive)
+  \end{itemize}
+\end{frame}
+
 \begin{frame}[fragile]
   \frametitle{Example Fortran90 Code}
   \begin{lstlisting}
-PROGRAM HELLO
-    IMPLICIT NONE
-    INTEGER i    ! This is a comment
-    DO 100 i = 1, 10
-        PRINT *, "I am in iteration ", i, & 
+program hello
+    implicit none
+    integer :: i    ! This is a comment
+    do 100 i = 1, 10
+        print *, "I am in iteration ", i, & 
                  " of the loop."
-    END DO
-END PROGRAM HELLO
+    end do
+end program hello
   \end{lstlisting}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Fortran 90}
+  Free Form: Position in the line no longer relevant.
+  Some added features:
+  \begin{itemize}
+    \item DO - END DO
+    \item Modules
+    \item Comments now denoted with Exclamation Mark
+    \item But still mostly backwards compatible.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Fortran 95}
+  Fortran 95 removed items from the syntax that have been depreciated.
+  Examples:
+  \begin{itemize}
+    \item DO loops with floating point iterators
+    \item Calculating Jump destinations
+  \end{itemize}
+  But also new features were introduced, for example:
+  \begin{itemize}
+    \item Implicit Loops with FORALL and WHERE
+    \item PURE, ELEMENTAL, and RECURSIVE procedures
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Newer Fortran Versions}
+  \begin{itemize}
+    \item Fortran 2003
+    \begin{itemize}
+      \item Some Object Oriented Features
+      \item Input/Output Streams
+    \end{itemize}
+    \item Fortran 2008
+    \begin{itemize}
+      \item Easier parallelisation with DO CONCURRENT
+      \item Submodules
+    \end{itemize}
+    \item Fortran 2015
+    \begin{itemize}
+      \item ???
+    \end{itemize}
+  \end{itemize}
 \end{frame}
 
