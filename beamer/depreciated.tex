@@ -1,64 +1,81 @@
-
 \begin{frame}[fragile]
-  \frametitle{}
+  \frametitle{Depreciated Features}
 
-  \begin{lstlisting}
-  \end{lstlisting}
+  This section explains a few features that are depreciated.
+
+  You usually wouldn't want to use any of these features yourself, 
+  however you might come across them when looking at old code.
 
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{}
+  \frametitle{CONTINUE}
 
-  \begin{lstlisting}
-  \end{lstlisting}
+  The \texttt{CONTINUE} statement does nothing at all.
 
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{}
-
-  \begin{lstlisting}
-  \end{lstlisting}
+  It was usually used in conjunction with labels to remove any ambiguity
+  as to whether the line with the label was to be executed or not.
 
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{}
+  \frametitle{COMMON}
 
-  \begin{lstlisting}
-  \end{lstlisting}
+  Common blocks were used to share variables between different procedures without
+  having to pass them through as arguments.
 
-\end{frame}
+  It was important that all procedures that share these variables use the exact
+  same variable names, and the same \texttt{COMMON} statement.
 
-\begin{frame}[fragile]
-  \frametitle{}
-
-  \begin{lstlisting}
-  \end{lstlisting}
+  Use \texttt{MODULES} instead.
 
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{}
+  \frametitle{EQUIVALENCE}
 
-  \begin{lstlisting}
-  \end{lstlisting}
+  \texttt{EQUIVALENCE} means that different variables should literally
+  share the same memory location.
+
+  This was originally necessary to reuse memory on computers that had kilobytes 
+  at best. 
+
+  Modern computers have more than enough memory, so this need is no longer there.
+
+  Some people claim that they've found other uses for \texttt{EQUIVALENCE} but you
+  really shouldn't bother with that.
 
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{}
+  \frametitle{DATA}
 
-  \begin{lstlisting}
-  \end{lstlisting}
+  \texttt{DATA} was used to initialise variables, that is to give them their initial values.
+
+  Just assign the values at the beginning of your execution block.
 
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{}
+  \frametitle{GOTO}
+
+  \texttt{GOTO} is used with a label. 
+  Execution of the program jumps directly to the line with the label.
 
   \begin{lstlisting}
+print *, "This line is executed."
+goto 1001
+print *, "This line is not."
+1001 CONTINUE
+print *, "This line is executed again."
   \end{lstlisting}
+
+  \texttt{GOTO} can jump both forwards and backwards. 
+  It interrupts the code flow and is therefore despised by many programmers.
+
+  Using loops and \texttt{IF} blocks can often achieve the same thing in a more
+  elegant way.
+
+  That said: "Real Programmers Aren't Afraid of GOTO."
 
 \end{frame}
