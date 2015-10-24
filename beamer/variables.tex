@@ -112,6 +112,33 @@ B = A               ! Actually stores "Hello Worl"
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{}
+  \frametitle{Working with Characters}
+
+  \begin{lstlisting}
+print *, String1 // String2
+print *, trim(String1) // " " // trim(String2)
+print *, "Length of String1 is ", len(String1)
+print *, "Length of String2 w/o trailing spaces is ", &
+         len_trim(String1)
+  \end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Types}
+
+  You can create your own Variable types.
+
+  \begin{lstlisting}
+TYPE :: my_type
+  INTEGER :: my_int
+  REAL :: my_real
+END TYPE my_type
+
+TYPE(my_type) :: t
+
+t % my_int = 5
+t % my_real = 1.2
+  \end{lstlisting}
 
 \end{frame}
