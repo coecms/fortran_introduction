@@ -139,8 +139,8 @@ write(t, '(A5, I5.5)') "file_", 4
 integer, parameter :: my_unit = 300 ! Some number > 10
 integer :: io_err
 
-open(unit=my_unit, file="file.txt", action="WRITE", status="REPLACE", &
-     iostat=io_err)
+open(unit=my_unit, file="file.txt", action="WRITE", &
+     status="REPLACE", iostat=io_err)
 write(my_unit, '(A)') "This text is written to the file"
 close(my_unit)
   \end{lstlisting}
